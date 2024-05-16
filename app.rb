@@ -9,13 +9,14 @@ require_relative "config/application"
 
 # http://localhost:4567/ (root)
 get "/" do
-  @pokes = Pokemon.all
+  # @hello = "Hello from the root!"
+  @pokemons = Pokemon.all
   erb :index
 end
 
-# http://localhost:4567/about
+
 get "/about" do
-  "About Sinatra..."
+  "Hello from the About page!"
 end
 
 
@@ -31,14 +32,3 @@ end
 
 
 
-
-
-
-
-
-
-
-get '/notion' do
-  @title = init_notion
-  erb :notion_test
-end

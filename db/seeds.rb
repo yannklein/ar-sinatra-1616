@@ -1,29 +1,32 @@
 require 'open-uri'
 require 'json'
 
-base_url = "https://pokeapi.co/api/v2/pokemon-form/"
+url = "https://pokeapi.co/api/v2/pokemon-form/123"
+# name: poke_data["name"], 
+# image_url: poke_data["sprites"]["front_default"],
+# poke_type: poke_data["types"][0]["type"]["name"]
 
 puts "Destroying pokemons..."
 Pokemon.destroy_all
+puts "Pokemons destroyed"
 
-puts "Seeding 10 pokemons..."
-10.times do
-  random_url = "#{base_url}#{rand(1..1000)}"
-  poke_serialized = URI.open(random_url).read
-  poke_data = JSON.parse(poke_serialized)
-
-  poke = Pokemon.new(
+50.times do
+  url = "https://pokeapi.co/api/v2/pokemon-form/#{rand(1..200)}"
+  response = URI.open(url).read()
+  poke_data = JSON.parse(response)
+  pokemon = Pokemon.new(
     name: poke_data["name"], 
     image_url: poke_data["sprites"]["front_default"],
     poke_type: poke_data["types"][0]["type"]["name"]
   )
-  poke.save!
-  # CREATE = NEW + SAVE
+  pokemon.save!
+  puts "Created #{poke_data["name"]}"
+
+  # NEW + SAVE
   # Pokemon.create!(
   #   name: poke_data["name"], 
   #   image_url: poke_data["sprites"]["front_default"],
   #   poke_type: poke_data["types"][0]["type"]["name"]
   # )
-  puts "Pokemon #{poke_data["name"]} as been created."
 end
-puts "Done!"
+puts "Finished"
