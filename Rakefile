@@ -1,4 +1,7 @@
 require 'rspec/core/rake_task'
+require 'sinatra'
+require "sinatra/activerecord"
+
 RSpec::Core::RakeTask.new(:spec)
 
 require_relative 'config/application'
