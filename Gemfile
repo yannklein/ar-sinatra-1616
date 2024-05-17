@@ -9,6 +9,7 @@ gem "sinatra-activerecord"
 gem "sinatra-contrib"
 gem "thin"
 gem "faker"
+gem "sqlite3"
 # group :production do
 #   gem 'pg'
 # end
