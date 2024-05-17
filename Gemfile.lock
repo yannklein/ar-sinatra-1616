@@ -71,7 +71,7 @@ GEM
       rack-protection (= 3.2.0)
       sinatra (= 3.2.0)
       tilt (~> 2.0)
-    sqlite3 (2.0.1)
+    sqlite3 (1.7.3)
       mini_portile2 (~> 2.8.0)
     thin (1.8.2)
       daemons (~> 1.0, >= 1.0.9)
@@ -93,7 +93,7 @@ DEPENDENCIES
   sinatra
   sinatra-activerecord
   sinatra-contrib
-  sqlite3
+  sqlite3 (~> 1.4)
   thin
 
 RUBY VERSION
