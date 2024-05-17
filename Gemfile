@@ -9,6 +9,6 @@ gem "sinatra-activerecord"
 gem "sinatra-contrib"
 gem "thin"
 gem "faker"
-# group :production do
-#   gem 'pg'
-# end
+group :production do
+  gem 'pg'
+end

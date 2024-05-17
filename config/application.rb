@@ -1,6 +1,3 @@
-require 'sinatra' 
-require "sinatra/activerecord"
-
 configure :development do
   # This is some boilerplate code to read the config/database.yml file
   # And connect to the database
@@ -10,11 +7,16 @@ configure :development do
 end
 
 configure :production do
-  # This is some boilerplate code to read the config/database.yml file
-  # And connect to the database
-  config_path = File.join(__dir__, "database.yml")
-  ActiveRecord::Base.configurations = YAML.load_file(config_path)
-  ActiveRecord::Base.establish_connection(:production)
+  db = URI.parse(ENV['DATABASE_URL'] || 'postgres://localhost/mydb')
+
+  ActiveRecord::Base.establish_connection(
+    :adapter => db.scheme == 'postgres' ? 'postgresql' : db.scheme,
+    :host    => db.host,
+    :username => db.user,
+    :password => db.password,
+    :database => db.path[1..-1],
+    :encoding => 'utf8'
+  )
 end
 
 # Set a logger so that you can view the SQL actually performed by ActiveRecord
