@@ -14,7 +14,7 @@ configure :production do
   # And connect to the database
   config_path = File.join(__dir__, "database.yml")
   ActiveRecord::Base.configurations = YAML.load_file(config_path)
-  ActiveRecord::Base.establish_connection(:development)
+  ActiveRecord::Base.establish_connection(:production)
 end
 
 # Set a logger so that you can view the SQL actually performed by ActiveRecord
