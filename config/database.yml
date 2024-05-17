@@ -4,7 +4,7 @@ development:
 
 production:
   adapter: postgresql
-  database: development
+  database: <%= ENV['PG_NAME'] %>
   url: <%= ENV['DATABASE_URL'] %>
   username: <%= ENV['PG_USER'] %>
   password: <%= ENV['PG_PASS'] %>
